@@ -1,0 +1,26 @@
+Config:
+  # |------------------------------|
+  # | BossBarVanish Plugin Config  |
+  # | Plugin created by PanHaskins |
+  # | Version: 1.1                 |
+  # |------------------------------|
+
+  # -----------------------------------------------------------------------------------
+  # Can use -> "BLUE", "GREEN", "PINK", "PURPLE", "PURPLE", "RED", "WHITE"
+  Color: "BLUE"
+  # Can use -> "SOLID", "SEGMENTED_6", "SEGMENTED_10", "SEGMENTED_12", "SEGMENTED_20"
+  Type: "SOLID"
+
+
+  # You can use HEX, GRADIENTS and RAINBOW COLORS in these messages
+  # HEX COLOR: <SOLID:00FFD3>TEXT
+  # GRADIENT COLOR: <GRADIENT:2C08BA>TEXT</GRADIENT:028A97>
+  # RAINBOW COLOR: <RAINBOW1>TEXT</RAINBOW>
+
+  BossBarMessage: "&b&lYou are invisible"
+
+  Reload:
+    Reloading: "&c&l[!] &fThe &cBossBarVanish &faddon is &creloading&f!"
+    Complete: "&a&l[!] &aBossBarVanish &freload is &acomplete&f!"
+    Usage: "&b&lBBV &8● &fYou must use /bbv reload to reload plugin!"
+    NoPermission: "&c&l[!] &fYou don´t have permission to use &c/bbv reload&f!"

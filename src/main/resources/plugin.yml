@@ -1,0 +1,12 @@
+name: BossBarVanish
+version: '${project.version}'
+main: sk.panhaskins.bossbarvanish.BossBarVanish
+api-version: 1.17
+prefix: BBVanish
+load: STARTUP
+softdepend:  [ PremiumVanish, SuperVanish ]
+authors: [ PanHaskins ]
+description: Addon for PremiumVanish and SuperVanish
+commands:
+  bbv:
+    aliases: [bossbarvanish]
