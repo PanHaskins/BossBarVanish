@@ -16,13 +16,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 public class ColorsAPI {
 
-    /**
-     * The current version of the server in the a form of a major version.
-     * If the static initialization for this fails, you know something's wrong with
-     * the server software.
-     *
-     * @since 1.0.0
-     */
     private static final int VERSION = getVersion();
 
     /**

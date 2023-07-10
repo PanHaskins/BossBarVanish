@@ -1,7 +1,6 @@
 name: BossBarVanish
 version: '${project.version}'
 main: sk.panhaskins.bossbarvanish.BossBarVanish
-api-version: 1.17
 prefix: BBVanish
 load: STARTUP
 softdepend:  [ PremiumVanish, SuperVanish ]

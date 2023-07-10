@@ -12,17 +12,16 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import sk.panhaskins.bossbarvanish.files.Config;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public final class BossBarVanish extends JavaPlugin implements Listener {
 
     public static Config config;
     public Bar bar;
-
-    List<Player> players = new ArrayList<>();
-
-
+    public static BossBarVanish instance;
+    public static BossBarVanish getInstance() {
+        return instance;
+    }
     @Override
     public void onEnable() {
         if (Bukkit.getPluginManager().getPlugin("PremiumVanish") != null || Bukkit.getPluginManager().getPlugin("SuperVanish") != null) {
@@ -35,6 +34,7 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
             config = new Config(this);
             this.getServer().getPluginManager().registerEvents(this, this);
             bar = new Bar(this);
+            instance = this;
             this.getCommand("bbv").setExecutor(new Commands());
             this.getCommand("bbv").setTabCompleter(new TabComplete());
 
@@ -78,7 +78,6 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
     public void onVanish(PlayerHideEvent e) {
         Player player = e.getPlayer();
         bar.addPlayer(player);
-        player.sendMessage("Hide");
     }
 
     @EventHandler
@@ -86,7 +85,6 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
         Player player = e.getPlayer();
         if(bar.hasBar(player)){
             bar.removePlayer(player);
-            player.sendMessage("Show");
         }
     }
 
@@ -97,11 +95,6 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
         if(isVanished){
             bar.addPlayer(player);
         }
-
-        e.setJoinMessage(config.get().getString("Join")
-                .replaceAll("%player%", player.getDisplayName())
-                .replaceAll("%online%", String.valueOf(Bukkit.getOnlinePlayers().size() - 1 ))
-                .replaceAll("%max_online%", String.valueOf(Bukkit.getMaxPlayers())));
     }
 
     @EventHandler
@@ -109,8 +102,7 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
         Player player = e.getPlayer();
         boolean isVanished = VanishAPI.isInvisible(player);
         if(isVanished){
-            if(players.contains(player)){
-               players.remove(player);
+            if(bar.hasBar(player)){
                bar.removePlayer(player);
             }
         }

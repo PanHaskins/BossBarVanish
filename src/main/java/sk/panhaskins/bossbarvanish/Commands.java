@@ -22,6 +22,7 @@ public class Commands implements CommandExecutor {
                         if (sender.hasPermission("bbv.reload")) {
                             sender.sendMessage(ColorsAPI.process(BossBarVanish.config.get().getString("Config.Reload.Reloading")));
                             BossBarVanish.config.reloadFiles();
+                            BossBarVanish.getInstance().bar.reloadBar();
                             sender.sendMessage(ColorsAPI.process(BossBarVanish.config.get().getString("Config.Reload.Complete")));
                         } else {
                             sender.sendMessage(ColorsAPI.process(BossBarVanish.config.get().getString("Config.Reload.NoPermission")));

@@ -6,6 +6,8 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Bar {
@@ -39,6 +41,13 @@ public class Bar {
 
     public boolean hasBar(Player player){
         return bossBar.getPlayers().contains(player);
+    }
+
+    public void reloadBar(){
+        List<Player> players = new ArrayList<>(bossBar.getPlayers());
+        bossBar.removeAll();
+        createBar();
+        players.forEach(player -> bossBar.addPlayer(player));
     }
 
 }
