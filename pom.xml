@@ -93,5 +93,14 @@
             <type>jar</type>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>ir.syrent.velocityvanish</groupId>
+            <artifactId>VelocityVanish</artifactId>
+            <version>3.20.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/plugins/VelocityVanish-3.20.0.jar</systemPath>
+            <type>jar</type>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 </project>
