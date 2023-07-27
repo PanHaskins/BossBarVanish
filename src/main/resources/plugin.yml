@@ -3,7 +3,7 @@ version: '${project.version}'
 main: sk.panhaskins.bossbarvanish.BossBarVanish
 prefix: BBVanish
 load: STARTUP
-softdepend:  [ PremiumVanish, SuperVanish ]
+softdepend:  [ PremiumVanish, SuperVanish, VelocityVanish, SimpleVanish ]
 authors: [ PanHaskins ]
 description: Addon for PremiumVanish and SuperVanish
 commands:

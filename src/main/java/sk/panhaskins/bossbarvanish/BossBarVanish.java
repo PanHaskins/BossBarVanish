@@ -1,17 +1,9 @@
 package sk.panhaskins.bossbarvanish;
 
-import de.myzelyam.api.vanish.PlayerHideEvent;
-import de.myzelyam.api.vanish.PlayerShowEvent;
-import de.myzelyam.api.vanish.VanishAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import sk.panhaskins.bossbarvanish.VanishPlugins.PluginType;
 import sk.panhaskins.bossbarvanish.files.Config;
-
 
 
 public final class BossBarVanish extends JavaPlugin implements Listener {
@@ -22,9 +14,12 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
     public static BossBarVanish getInstance() {
         return instance;
     }
+
+    public static int haveAddon;
+
+
     @Override
     public void onEnable() {
-        if (Bukkit.getPluginManager().getPlugin("PremiumVanish") != null || Bukkit.getPluginManager().getPlugin("SuperVanish") != null) {
             // PLUGIN LOADING LOG
             //---------------------------------------------------------------------------------
             Logger.log(Logger.LogLevel.OUTLINE, "&b-------------------------------");
@@ -32,23 +27,16 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
             Logger.log(Logger.LogLevel.INFO, "Plugin loading...");
 
             config = new Config(this);
-            this.getServer().getPluginManager().registerEvents(this, this);
             bar = new Bar(this);
-            instance = this;
+
             this.getCommand("bbv").setExecutor(new Commands());
             this.getCommand("bbv").setTabCompleter(new TabComplete());
 
-            if (Bukkit.getPluginManager().getPlugin("PremiumVanish") != null) {
-                Logger.log(Logger.LogLevel.INFO, "PremiumVanish: &ais found");
+
+            for (PluginType pluginType : PluginType.values()) {
+                pluginType.registerEvents(this);
             }
 
-
-            if (Bukkit.getPluginManager().getPlugin("SuperVanish") != null) {
-                Logger.log(Logger.LogLevel.INFO, "SuperVanish: &ais found");
-            }
-
-
-            Logger.log(Logger.LogLevel.SUCCESS, "Plugin is loaded!");
 
             new UpdateChecker(this, 101063).getLatestVersion(version -> {
                 if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
@@ -61,55 +49,32 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
                     Logger.log(Logger.LogLevel.OUTLINE, "");
                 }
             });
+
+        if (haveAddon == 1) {
+            Logger.log(Logger.LogLevel.SUCCESS, "Plugin is loaded!");
             Logger.log(Logger.LogLevel.OUTLINE, "&b-------------------------------");
         } else {
+            Logger.log(Logger.LogLevel.ERROR, "Plugin is not loaded!");
+
             Logger.log(Logger.LogLevel.OUTLINE, "");
-            Logger.log(Logger.LogLevel.ERROR, "&cBossBarVanish &fAddon");
-            Logger.log(Logger.LogLevel.ERROR, "You must install");
-            Logger.log(Logger.LogLevel.ERROR, "SuperVanish or PremiumVanish");
+            Logger.log(Logger.LogLevel.ERROR, "You must install one of the supported plugins");
+            Logger.log(Logger.LogLevel.ERROR, "or you have more than 1 plugin on your server");
+            Logger.log(Logger.LogLevel.ERROR, "that supports this plugin.");
             Logger.log(Logger.LogLevel.OUTLINE, "");
+            Logger.log(Logger.LogLevel.OUTLINE, "&b-------------------------------");
+
             this.getPluginLoader().disablePlugin(this);
         }
+
+
+
         bar.createBar();
     }
         //---------------------------------------------------------------------------------
-
-    @EventHandler
-    public void onVanish(PlayerHideEvent e) {
-        Player player = e.getPlayer();
-        bar.addPlayer(player);
-    }
-
-    @EventHandler
-    public void offVanish(PlayerShowEvent e) {
-        Player player = e.getPlayer();
-        if(bar.hasBar(player)){
-            bar.removePlayer(player);
-        }
-    }
-
-    @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
-        Player player = e.getPlayer();
-        boolean isVanished = VanishAPI.isInvisible(player);
-        if(isVanished){
-            bar.addPlayer(player);
-        }
-    }
-
-    @EventHandler
-    public void onLeft(PlayerQuitEvent e) {
-        Player player = e.getPlayer();
-        boolean isVanished = VanishAPI.isInvisible(player);
-        if(isVanished){
-            if(bar.hasBar(player)){
-               bar.removePlayer(player);
-            }
-        }
-    }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
     }
+
 }
