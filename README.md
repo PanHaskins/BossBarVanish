@@ -1,4 +1,10 @@
 # BossBarVanish
 
-This Minecraft plugin was created as an add-on to another plugin (SuperVanish/PremiumVanish),
-as it didn't have and didn't want to add this feature.
+This Minecraft Plugin serves as an indicator to the player whether the player is in vanish or not.
+It is an addition to other plugins that do not have this feature.
+
+## Supported Plugins
+- PremiumVanish
+- SuperVanish
+- VelocityVanish
+- SimpleVanish
