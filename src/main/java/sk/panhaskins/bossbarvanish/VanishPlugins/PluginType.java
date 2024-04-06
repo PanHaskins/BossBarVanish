@@ -14,6 +14,7 @@ public enum PluginType {
     PREMIUMVANISH("PremiumVanish", "PSVanishPlugins"),
     SUPERVANISH("SuperVanish", "PSVanishPlugins"),
     VELOCITYVANISH("VelocityVanish", "VelocityVanishPlugin"),
+    ADVANCEDVANISH("AdvancedVanish","AdvancedVanishPlugin"),
     SIMPLEVANISH("SimpleVanish", "SimpleVanishPlugin");
 
     @Getter
@@ -43,7 +44,7 @@ public enum PluginType {
                 }
             } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException |
                      InvocationTargetException error) {
-                error.printStackTrace();
+                Logger.log(Logger.LogLevel.ERROR, error.getMessage());
             }
         } else {
             Logger.log(Logger.LogLevel.INFO, name + ": &cnot found");

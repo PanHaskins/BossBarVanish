@@ -3,9 +3,9 @@ version: '${project.version}'
 main: sk.panhaskins.bossbarvanish.BossBarVanish
 prefix: BBVanish
 load: STARTUP
-softdepend:  [ PremiumVanish, SuperVanish, VelocityVanish, SimpleVanish ]
+softdepend:  [ PremiumVanish, SuperVanish, VelocityVanish, AdvancedVanish, SimpleVanish ]
 authors: [ PanHaskins ]
-description: Addon for PremiumVanish and SuperVanish
+description: Indicator Addon for Vanish Plugins
 commands:
   bbv:
     aliases: [bossbarvanish]
