@@ -5,17 +5,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 import sk.panhaskins.bossbarvanish.VanishPlugins.PluginType;
 import sk.panhaskins.bossbarvanish.files.Config;
 
+import java.util.HashSet;
+
 
 public final class BossBarVanish extends JavaPlugin implements Listener {
 
     public static Config config;
-    public Bar bar;
+    public static Bar bar;
+
     public static BossBarVanish instance;
     public static BossBarVanish getInstance() {
         return instance;
     }
 
-    public static int haveAddon;
+    public static HashSet <String> enabledSupportedPlugins = new HashSet<>();
 
 
     @Override
@@ -31,7 +34,6 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
 
             this.getCommand("bbv").setExecutor(new Commands());
             this.getCommand("bbv").setTabCompleter(new TabComplete());
-
 
             for (PluginType pluginType : PluginType.values()) {
                 pluginType.registerEvents(this);
@@ -50,10 +52,7 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
                 }
             });
 
-        if (haveAddon == 1) {
-            Logger.log(Logger.LogLevel.SUCCESS, "Plugin is loaded!");
-            Logger.log(Logger.LogLevel.OUTLINE, "&b-------------------------------");
-        } else {
+        if (enabledSupportedPlugins.size() != 1) {
             Logger.log(Logger.LogLevel.ERROR, "Plugin is not loaded!");
 
             Logger.log(Logger.LogLevel.OUTLINE, "");
@@ -64,6 +63,17 @@ public final class BossBarVanish extends JavaPlugin implements Listener {
             Logger.log(Logger.LogLevel.OUTLINE, "&b-------------------------------");
 
             this.getPluginLoader().disablePlugin(this);
+
+        } else {
+            Logger.log(Logger.LogLevel.SUCCESS, "Plugin is loaded!");
+
+            enabledSupportedPlugins.forEach(plugin -> {
+                if (!PluginType.valueOf(plugin.toUpperCase()).getIsSupported()) {
+                    Logger.log(Logger.LogLevel.WARNING, "The" + plugin + "plugin is no longer supported.");
+                }
+            });
+
+            Logger.log(Logger.LogLevel.OUTLINE, "&b-------------------------------");
         }
 
 

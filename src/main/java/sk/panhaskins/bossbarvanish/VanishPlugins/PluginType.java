@@ -11,28 +11,36 @@ import java.lang.reflect.InvocationTargetException;
 
 public enum PluginType {
 
-    PREMIUMVANISH("PremiumVanish", "PSVanishPlugins"),
-    SUPERVANISH("SuperVanish", "PSVanishPlugins"),
-    VELOCITYVANISH("VelocityVanish", "VelocityVanishPlugin"),
-    ADVANCEDVANISH("AdvancedVanish","AdvancedVanishPlugin"),
-    SIMPLEVANISH("SimpleVanish", "SimpleVanishPlugin");
+    PREMIUMVANISH("PremiumVanish", "PSVanishPlugins", true),
+    SUPERVANISH("SuperVanish", "PSVanishPlugins", true),
+    VELOCITYVANISH("VelocityVanish", "VelocityVanishPlugin", false),
+    ADVANCEDVANISH("AdvancedVanish","AdvancedVanishPlugin", true),
+    SIMPLEVANISH("SimpleVanish", "SimpleVanishPlugin", true),
+    SAYANVANISH("SayanVanish", "SayanVanishPlugin", true);
 
     @Getter
     private final String name;
 
     @Getter
     private final String className;
-
-    PluginType(String name, String className) {
+    
+    @Getter
+    private final Boolean isSupported;
+    
+    PluginType(String name, String className, Boolean isSupported) {
         this.name = name;
         this.className = className;
+        this.isSupported = isSupported;
     }
 
+    public Boolean getIsSupported() {
+        return isSupported;
+    }
 
     public void registerEvents(BossBarVanish plugin) {
         if (Bukkit.getPluginManager().getPlugin(name) != null) {
             Logger.log(Logger.LogLevel.INFO, name + ": &ais found");
-            BossBarVanish.haveAddon += 1;
+            BossBarVanish.enabledSupportedPlugins.add(name);
             String classPath = "sk.panhaskins.bossbarvanish.VanishPlugins." + className;
             try {
                 Class<?> listenerClass = Class.forName(classPath);

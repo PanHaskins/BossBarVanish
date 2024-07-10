@@ -64,6 +64,11 @@
             <name>quantiom</name>
             <url>https://repo.repsy.io/mvn/quantiom/minecraft</url>
         </repository>
+        <repository>
+            <id>sayandevelopment-repo</id>
+            <name>SayanDevelopment Repository</name>
+            <url>https://repo.sayandev.org/snapshots</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -103,6 +108,11 @@
             <groupId>me.quantiom</groupId>
             <artifactId>advancedvanish</artifactId>
             <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sayandev</groupId>
+            <artifactId>sayanvanish-bukkit</artifactId>
+            <version>1.3.0</version>
         </dependency>
     </dependencies>
 </project>
