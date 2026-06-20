@@ -1,4 +1,4 @@
-package sk.panhaskins.bossbarvanish.VanishPlugins;
+package sk.panhaskins.bossbarvanish.vanishPlugins;
 
 import me.quantiom.advancedvanish.event.PlayerUnVanishEvent;
 import me.quantiom.advancedvanish.event.PlayerVanishEvent;
@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import sk.panhaskins.bossbarvanish.BossBarVanish;
 
 public class AdvancedVanishPlugin implements Listener {
+
     private final BossBarVanish plugin;
 
     public AdvancedVanishPlugin(BossBarVanish plugin) {
@@ -17,14 +18,14 @@ public class AdvancedVanishPlugin implements Listener {
     @EventHandler
     public void onVanish(PlayerVanishEvent e) {
         Player player = e.getPlayer();
-        plugin.bar.addPlayer(player);
+        plugin.indicator.addPlayer(player);
     }
 
     @EventHandler
     public void offVanish(PlayerUnVanishEvent e) {
         Player player = e.getPlayer();
-        if (plugin.bar.hasBar(player)) {
-            plugin.bar.removePlayer(player);
+        if (plugin.indicator.hasBar(player)) {
+            plugin.indicator.removePlayer(player);
         }
     }
 }

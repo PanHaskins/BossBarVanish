@@ -2,22 +2,41 @@ Config:
   # |------------------------------|
   # | BossBarVanish Plugin Config  |
   # | Plugin created by PanHaskins |
-  # | Version: 1.1                 |
+  # | Config Version: 1.2          |
   # |------------------------------|
 
   # -----------------------------------------------------------------------------------
-  # Can use -> "BLUE", "GREEN", "PINK", "PURPLE", "PURPLE", "RED", "WHITE"
+  # Can use -> "BLUE", "GREEN", "PINK", "PURPLE", "RED", "WHITE", "YELLOW"
   Color: "BLUE"
   # Can use -> "SOLID", "SEGMENTED_6", "SEGMENTED_10", "SEGMENTED_12", "SEGMENTED_20"
   Type: "SOLID"
 
 
-  # You can use HEX, GRADIENTS and RAINBOW COLORS in these messages
-  # HEX COLOR: <SOLID:00FFD3>TEXT
-  # GRADIENT COLOR: <GRADIENT:2C08BA>TEXT</GRADIENT:028A97>
-  # RAINBOW COLOR: <RAINBOW1>TEXT</RAINBOW>
+  # The messages below support legacy & codes and MiniMessage, mix them however you like.
+  #
+  # Colors:      &a &b &c ... or <green> <red> <gold> ...
+  # Formatting:  &l &o &n ... or <bold> <italic> <underlined> ...
+  # Hex:         &#00FFD3 {#00FFD3} <#00FFD3>
+  # Spigot hex:  &x&0&0&F&F&D&3
+  # Gradient:    <gradient:#2C08BA:#028A97>text</gradient>
+  # Rainbow:     <rainbow>text</rainbow>
+  # Placeholders needs PlaceholderAPI
+  #
+  # MiniMessage docs: https://docs.advntr.dev/minimessage/format.html
 
+  # Empty message = disable function
   BossBarMessage: "&b&lYou are invisible"
+  Screen:
+    Vanished:
+      TitleMessage: "&b&lInvisible"
+      SubtitleMessage: ""
+    UnVanished:
+      TitleMessage: "&e&lVisible"
+      SubtitleMessage: ""
+
+    FadeIn: 0
+    Stay: 20
+    FadeOut: 7
 
   Reload:
     Reloading: "&c&l[!] &fThe &cBossBarVanish &faddon is &creloading&f!"

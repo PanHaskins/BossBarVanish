@@ -1,6 +1,5 @@
-package sk.panhaskins.bossbarvanish.VanishPlugins;
+package sk.panhaskins.bossbarvanish.vanishPlugins;
 
-import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import sk.panhaskins.bossbarvanish.BossBarVanish;
@@ -18,15 +17,10 @@ public enum PluginType {
     SIMPLEVANISH("SimpleVanish", "SimpleVanishPlugin", true),
     SAYANVANISH("SayanVanish", "SayanVanishPlugin", true);
 
-    @Getter
     private final String name;
-
-    @Getter
     private final String className;
-    
-    @Getter
     private final Boolean isSupported;
-    
+
     PluginType(String name, String className, Boolean isSupported) {
         this.name = name;
         this.className = className;

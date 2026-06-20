@@ -2,8 +2,8 @@ name: BossBarVanish
 version: '${project.version}'
 main: sk.panhaskins.bossbarvanish.BossBarVanish
 prefix: BBVanish
-load: STARTUP
-softdepend:  [ PremiumVanish, SuperVanish, VelocityVanish, AdvancedVanish, SimpleVanish ]
+api-version: '1.18'
+softdepend:  [ PremiumVanish, SuperVanish, VelocityVanish, AdvancedVanish, SimpleVanish, SayanVanish, PlaceholderAPI ]
 authors: [ PanHaskins ]
 description: Indicator Addon for Vanish Plugins
 commands:

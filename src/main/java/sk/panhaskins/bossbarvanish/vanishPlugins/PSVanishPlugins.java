@@ -1,4 +1,4 @@
-package sk.panhaskins.bossbarvanish.VanishPlugins;
+package sk.panhaskins.bossbarvanish.vanishPlugins;
 
 import de.myzelyam.api.vanish.PlayerHideEvent;
 import de.myzelyam.api.vanish.PlayerShowEvent;
@@ -12,6 +12,7 @@ import sk.panhaskins.bossbarvanish.BossBarVanish;
 
 // This class is for PremiumVanish and SuperVanish plugin
 public class PSVanishPlugins implements Listener {
+
     private final BossBarVanish plugin;
 
     public PSVanishPlugins(BossBarVanish plugin) {
@@ -21,14 +22,14 @@ public class PSVanishPlugins implements Listener {
     @EventHandler
         public void onVanish(PlayerHideEvent e) {
             Player player = e.getPlayer();
-            plugin.bar.addPlayer(player);
+            plugin.indicator.addPlayer(player);
     }
 
     @EventHandler
     public void offVanish(PlayerShowEvent e) {
             Player player = e.getPlayer();
-            if (plugin.bar.hasBar(player)) {
-                plugin.bar.removePlayer(player);
+            if (plugin.indicator.hasBar(player)) {
+                plugin.indicator.removePlayer(player);
             }
     }
 
@@ -37,7 +38,7 @@ public class PSVanishPlugins implements Listener {
         Player player = e.getPlayer();
         boolean isVanished = VanishAPI.isInvisible(player);
         if(isVanished){
-            plugin.bar.addPlayer(player);
+            plugin.indicator.addPlayer(player);
         }
     }
 
@@ -46,8 +47,8 @@ public class PSVanishPlugins implements Listener {
         Player player = e.getPlayer();
         boolean isVanished = VanishAPI.isInvisible(player);
         if(isVanished){
-            if(plugin.bar.hasBar(player)){
-                plugin.bar.removePlayer(player);
+            if(plugin.indicator.hasBar(player)){
+                plugin.indicator.removePlayer(player);
             }
         }
     }

@@ -29,7 +29,7 @@ public class UpdateChecker {
                 }
             } catch (IOException exception)
             {
-                plugin.getLogger().info(ColorsAPI.process("&cUPDATE CHECKER is broken, can´t find an update!\n" + exception.getMessage()));
+                Logger.log(Logger.LogLevel.ERROR, "UPDATE CHECKER is broken, can´t find an update!\n" + exception.getMessage());
             }
         });
     }

@@ -1,4 +1,4 @@
-package sk.panhaskins.bossbarvanish.VanishPlugins;
+package sk.panhaskins.bossbarvanish.vanishPlugins;
 
 import ir.syrent.velocityvanish.spigot.event.PreUnVanishEvent;
 import ir.syrent.velocityvanish.spigot.event.PreVanishEvent;
@@ -19,15 +19,15 @@ public class VelocityVanishPlugin implements Listener {
     @EventHandler
     public void offVanish(PreUnVanishEvent e){
         Player player = e.getPlayer();
-        if (plugin.bar.hasBar(player)) {
-            plugin.bar.removePlayer(player);
+        if (plugin.indicator.hasBar(player)) {
+            plugin.indicator.removePlayer(player);
         }
     }
 
     @EventHandler
     public void onVanish(PreVanishEvent e){
         Player player = e.getPlayer();
-        plugin.bar.addPlayer(player);
+        plugin.indicator.addPlayer(player);
     }
 
 }

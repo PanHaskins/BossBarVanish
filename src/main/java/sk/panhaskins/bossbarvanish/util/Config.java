@@ -1,4 +1,4 @@
-package sk.panhaskins.bossbarvanish.files;
+package sk.panhaskins.bossbarvanish.util;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -29,8 +29,6 @@ public class Config {
         customFile = YamlConfiguration.loadConfiguration(file);
 
     }
-
-
 
     public FileConfiguration get() {
         if (customFile == null)

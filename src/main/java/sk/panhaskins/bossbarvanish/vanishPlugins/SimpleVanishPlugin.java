@@ -1,4 +1,4 @@
-package sk.panhaskins.bossbarvanish.VanishPlugins;
+package sk.panhaskins.bossbarvanish.vanishPlugins;
 
 import net.achymake.simplevanish.SimpleVanish;
 import org.bukkit.entity.Player;
@@ -16,8 +16,6 @@ public class SimpleVanishPlugin implements Listener {
 
     public SimpleVanishPlugin(BossBarVanish plugin){
         this.plugin = plugin;
-
-
     }
 
     @EventHandler
@@ -25,7 +23,7 @@ public class SimpleVanishPlugin implements Listener {
         Player player = e.getPlayer();
         boolean isVanished = SimpleVanish.getDatabase().isVanished(player);
         if(isVanished){
-            plugin.bar.addPlayer(player);
+            plugin.indicator.addPlayer(player);
         }
     }
 
@@ -34,8 +32,8 @@ public class SimpleVanishPlugin implements Listener {
         Player player = e.getPlayer();
         boolean isVanished = SimpleVanish.getDatabase().isVanished(player);
         if(isVanished){
-            if(plugin.bar.hasBar(player)){
-                plugin.bar.removePlayer(player);
+            if(plugin.indicator.hasBar(player)){
+                plugin.indicator.removePlayer(player);
             }
         }
     }
@@ -49,10 +47,10 @@ public class SimpleVanishPlugin implements Listener {
                 if (player.hasPermission("simplevanish.command.vanish")) {
                     boolean isNotVanished = SimpleVanish.getDatabase().isVanished(player);
                     if (!isNotVanished) {
-                        plugin.bar.addPlayer(player);
+                        plugin.indicator.addPlayer(player);
                     } else {
-                        if (plugin.bar.hasBar(player)) {
-                            plugin.bar.removePlayer(player);
+                        if (plugin.indicator.hasBar(player)) {
+                            plugin.indicator.removePlayer(player);
                         }
                     }
                 }
@@ -70,10 +68,10 @@ public class SimpleVanishPlugin implements Listener {
                 if (player.hasPermission("simplevanish.command.vanish.others")) {
                     boolean isNotVanished = SimpleVanish.getDatabase().isVanished(target);
                     if (!isNotVanished) {
-                        plugin.bar.addPlayer(target);
+                        plugin.indicator.addPlayer(target);
                     } else {
-                        if (plugin.bar.hasBar(target)) {
-                            plugin.bar.removePlayer(target);
+                        if (plugin.indicator.hasBar(target)) {
+                            plugin.indicator.removePlayer(target);
                         }
                     }
                 }
