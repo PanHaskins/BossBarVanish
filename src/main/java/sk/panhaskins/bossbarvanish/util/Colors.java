@@ -224,8 +224,6 @@ public final class Colors {
     }
 
     private static String applyPlaceholders(String input, OfflinePlayer viewer) {
-        // ponytail: checked per call, not cached in a static — this plugin uses load: STARTUP,
-        // so a static flag would be captured before PlaceholderAPI is enabled.
         return viewer != null && Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")
                 ? PlaceholderAPI.setPlaceholders(viewer, input)
                 : input;
